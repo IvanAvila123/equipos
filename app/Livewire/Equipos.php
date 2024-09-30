@@ -12,6 +12,8 @@ class Equipos extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
     protected $paginationTheme = 'tailwind';
 
     #[On('equipoAdd')]
@@ -44,7 +46,14 @@ class Equipos extends Component
     public function render()
     {
         try {
-            $equipos = Equipo::paginate(10);
+            $equipos = Equipo::where('modelo', 'like', '%' . $this->search . '%')
+                ->orWhere('capacidad', 'like', '%' . $this->search . '%')
+                ->orWhere('tamano', 'like', '%' . $this->search . '%')
+                ->orWhere('resolucion', 'like', '%' . $this->search . '%')
+                ->orWhere('camara', 'like', '%' . $this->search . '%')
+                ->orWhere('sistema', 'like', '%' . $this->search . '%')
+                ->paginate(10);
+
             return view('livewire.equipos', ['equipos' => $equipos]);
         } catch (\Exception $e) {
             Log::error('Error al cargar equipos: ' . $e->getMessage());

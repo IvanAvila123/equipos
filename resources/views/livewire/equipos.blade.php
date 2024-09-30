@@ -15,8 +15,10 @@
 
     <div class="relative mb-4 text-lg text-gray-800 bg-transparent dark:text-gray-200">
         <div class="flex items-center py-2 border-b border-b-2 border-teal-500">
-            <input class="px-2 mr-3 leading-tight bg-transparent border-none focus:outline-none dark:text-white" type="text"
-                placeholder="Search">
+            <input class="px-2 mr-3 leading-tight bg-transparent border-none focus:outline-none dark:text-white"
+       type="text"
+       placeholder="Search"
+       wire:model.live="search">
             <button type="submit" class="absolute top-0 right-0 mt-3 mr-4">
                 <svg class="w-4 h-4 text-gray-800 fill-current dark:text-gray-200" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 56.966 56.966">
