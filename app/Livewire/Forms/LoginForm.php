@@ -30,7 +30,10 @@ class LoginForm extends Form
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only(['username', 'password']), $this->remember)) {
+        $credentials = $this->only(['username', 'password']);
+        $credentials['is_active'] = true; // Solo permite login a usuarios activos
+
+        if (!Auth::attempt($credentials, $this->remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -40,6 +43,8 @@ class LoginForm extends Form
 
         RateLimiter::clear($this->throttleKey());
     }
+
+
 
     /**
      * Ensure the authentication request is not rate limited.
@@ -67,6 +72,6 @@ class LoginForm extends Form
      */
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->username).'|'.request()->ip());
+        return Str::transliterate(Str::lower($this->username) . '|' . request()->ip());
     }
 }

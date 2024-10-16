@@ -88,7 +88,7 @@ public function save()
         $this->dispatch('equipoAdd');
     }
 
-    $this->modalVisible = false;
+    $this->modalVisible = true;
     $this->reset(['equipoId', 'modelo', 'capacidad', 'tamano', 'resolucion', 'camara', 'sistema', 'image']);
 
 }

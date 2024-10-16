@@ -34,6 +34,10 @@ new class extends Component
                         {{ __('Equipos') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('usuarios')" :active="request()->routeIs('usuarios')" wire:navigate>
+                        {{ __('Usuarios') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')" wire:navigate>
                         {{ __('Permisos') }}
                     </x-nav-link>
@@ -91,6 +95,18 @@ new class extends Component
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('equipos')" :active="request()->routeIs('equipos')" wire:navigate>
                 {{ __('Equipos') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('usuarios')" :active="request()->routeIs('usuarios')" wire:navigate>
+                {{ __('Usuarios') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')" wire:navigate>
+                {{ __('Permisos') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('roles')" :active="request()->routeIs('roles')" wire:navigate>
+                {{ __('Roles') }}
             </x-responsive-nav-link>
         </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
@@ -40,7 +41,7 @@ class ModalRoles extends Component
     public function save()
     {
         $this->validate([
-            'name'=> 'required|unique:roles,name',
+            'name'=> ['required', Rule::unique('roles')->ignore($this->roleId)],
             'selectedPermissions' => 'array',
         ]);
 
@@ -64,7 +65,7 @@ class ModalRoles extends Component
             $role->syncPermissions($permissions);
         }
 
-        $this->modalVisible = true;
+        $this->modalVisible = false;
         $this->reset(['name','selectedPermissions']);
     }
 

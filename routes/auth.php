@@ -40,4 +40,9 @@ Route::middleware(['auth', 'super-admin'])->group(function(){
         return view('roles');
 
     })->name('roles');
+
+    Route::get('usuarios',function (){
+        return view('usuarios');
+
+    })->name('usuarios');
 });
