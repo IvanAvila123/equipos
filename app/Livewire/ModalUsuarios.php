@@ -48,7 +48,7 @@ class ModalUsuarios extends Component
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'username'=> ['required', Rule::unique('users')->ignore($this->userId)],
+            'username' => ['required', Rule::unique('users')->ignore($this->userId)],
             'password' => $this->userId ? 'nullable|string|min:6' : 'required|string|min:6',
             'selectedRoleId' => 'required|exists:roles,id',
         ]);
@@ -73,7 +73,11 @@ class ModalUsuarios extends Component
             $this->dispatch('userAdd');
         }
 
-        $user->syncRoles([$this->selectedRoleId]);
+        // Obtén el nombre del rol basado en el ID seleccionado
+        $roleName = Role::findById($this->selectedRoleId)->name;
+
+        // Asigna el rol al usuario usando el nombre del rol
+        $user->syncRoles([$roleName]);
 
         $this->modalVisible = false;
         $this->resetFields();

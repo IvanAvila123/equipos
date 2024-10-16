@@ -33,18 +33,27 @@ new class extends Component
                     <x-nav-link :href="route('equipos')" :active="request()->routeIs('equipos')" wire:navigate>
                         {{ __('Equipos') }}
                     </x-nav-link>
+                    @can('ver usuarios')
 
                     <x-nav-link :href="route('usuarios')" :active="request()->routeIs('usuarios')" wire:navigate>
                         {{ __('Usuarios') }}
                     </x-nav-link>
 
+                    @endcan
+
+                    @can('ver permisos')
+
                     <x-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')" wire:navigate>
                         {{ __('Permisos') }}
                     </x-nav-link>
 
+                    @endcan
+
+                    @can('ver roles')
                     <x-nav-link :href="route('roles')" :active="request()->routeIs('roles')" wire:navigate>
                         {{ __('Roles') }}
                     </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -93,21 +102,35 @@ new class extends Component
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+
             <x-responsive-nav-link :href="route('equipos')" :active="request()->routeIs('equipos')" wire:navigate>
                 {{ __('Equipos') }}
             </x-responsive-nav-link>
 
+            @can('ver usuarios')
+
             <x-responsive-nav-link :href="route('usuarios')" :active="request()->routeIs('usuarios')" wire:navigate>
                 {{ __('Usuarios') }}
             </x-responsive-nav-link>
+            
+            @endcan
+
+            @can('ver permisos')
 
             <x-responsive-nav-link :href="route('permissions')" :active="request()->routeIs('permissions')" wire:navigate>
                 {{ __('Permisos') }}
             </x-responsive-nav-link>
 
+            @endcan
+
+            @can('ver roles	')
+
             <x-responsive-nav-link :href="route('roles')" :active="request()->routeIs('roles')" wire:navigate>
                 {{ __('Roles') }}
             </x-responsive-nav-link>
+
+            @endcan
+
         </div>
 
         <!-- Responsive Settings Options -->

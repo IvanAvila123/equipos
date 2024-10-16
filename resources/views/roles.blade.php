@@ -4,8 +4,11 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                 {{ __('Roles') }}
             </h2>
+            @can('crear roles')
 
             @livewire('modal-roles')
+
+            @endcan
         </div>
 
     </x-slot>

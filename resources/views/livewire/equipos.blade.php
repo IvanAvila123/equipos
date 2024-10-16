@@ -45,14 +45,18 @@
                         <p><i class="mr-2 fab fa-apple"></i><i class="mr-2 fab fa-android"></i>SO: {{ $equipo->sistema }}</p>
                     </div>
                     <div class="flex justify-between mt-4">
+                        @can('eliminar equipos')
                         <button wire:click="delete({{ $equipo->id }})"
                             class="px-4 py-2 font-bold text-white transition duration-300 ease-in-out bg-red-500 rounded hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800">
                             <i class="mr-2 fas fa-trash"></i>Eliminar
                         </button>
+                        @endcan
+                        @can('editar equipos')
                         <button wire:click="$dispatch('editEquipo', { id: {{ $equipo->id }} })"
                             class="px-4 py-2 font-bold text-white transition duration-300 ease-in-out bg-blue-500 rounded hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800">
                             <i class="mr-2 fas fa-edit"></i>Editar
                         </button>
+                        @endcan
                     </div>
                 </div>
             </div>

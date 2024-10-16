@@ -29,6 +29,7 @@
                     <th class="px-4 py-3 font-medium text-gray-600 dark:text-gray-200">Nombre</th>
                     <th class="px-4 py-3 font-medium text-gray-600 dark:text-gray-200">Username</th>
                     <th class="px-4 py-3 font-medium text-gray-600 dark:text-gray-200">Email</th>
+                    <th class="px-4 py-3 font-medium text-gray-600 dark:text-gray-200">Rol</th>
                     <th class="px-4 py-3 font-medium text-gray-600 dark:text-gray-200">Estado del usuario</th>
                     <th class="px-4 py-3 font-medium text-gray-600 dark:text-gray-200">Acciones</th>
                 </tr>
@@ -47,6 +48,9 @@
                     </td>
                     <td class="px-4 py-3 text-gray-700 dark:text-gray-300">
                         {{ $usuario->email }}
+                    </td>
+                    <td class="px-4 py-3 text-gray-700 dark:text-gray-300">
+                        {{ $usuario->roles->first()->name ?? 'Sin rol' }}
                     </td>
                     <td class="px-4 py-3">
                         <button wire:click="toggleUserStatus({{ $usuario->id }})"
