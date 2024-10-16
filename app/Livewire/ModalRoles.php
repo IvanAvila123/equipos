@@ -25,7 +25,7 @@ class ModalRoles extends Component
         $this->modalVisible = true;
     }
 
-    #[On('editPermission')]
+    #[On('editRole')]
     public function show($id)
     {
         $this->roleId = $id;
@@ -52,21 +52,20 @@ class ModalRoles extends Component
 
 
         if ($this->roleId) {
-            $role =Role::find($this->roleId);
+            $role = Role::find($this->roleId);
             if ($role) {
                 $role->update($data);
                 $this->dispatch('roleUpdate');
-                $role->syncPermisssions($permissions);
+                $role->syncPermissions($permissions);
             }
-
-        }else{
+        } else {
             $role = Role::create($data);
             $this->dispatch('roleAdd');
-            $role->syncPermisssions($permissions);
+            $role->syncPermissions($permissions);
         }
 
         $this->modalVisible = true;
-        $this->reset(['name']);
+        $this->reset(['name','selectedPermissions']);
     }
 
     public function render()

@@ -35,4 +35,9 @@ Route::middleware(['auth', 'super-admin'])->group(function(){
         return view('permissions');
 
     })->name('permissions');
+
+    Route::get('roles',function (){
+        return view('roles');
+
+    })->name('roles');
 });
